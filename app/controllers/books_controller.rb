@@ -24,10 +24,11 @@ class BooksController < ApplicationController
   end
 
   def update
-    if @book.update()
-      redirect_to book_path(@book), notice: "successfully updated book!"
+    @book = Book.find(params[:id])
+    if @book.update(book_params)
+      redirect_to @book, notice: 'Book was successfully updated.'
     else
-      render 'edit'
+      render :edit
     end
   end
 
